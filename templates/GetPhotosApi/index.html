@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+{% extends "GetPhotosApi/base.html" %}
+{% load static %}
+{% block head_block %}
+    <title>HomePage</title> 
+{% endblock%}
+{% block body_block %}
+
+<div style="width: 100%;">
+  <div style="float:left; width: 20%">
+    <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+      <form class="d-flex" id="search_form">
+        <div class="row">
+          {% csrf_token %}
+
+          <li class="mb-1 sidemenuitem">
+            <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#sex-collapse" aria-expanded="false">
+              Gender
+            </a>
+            <div class="collapse" id="sex-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li class="radio">
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="gender" value="female" onchange="">Female</label> </br>
+                  </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="gender" value="male" onchange="">Male</label></br>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="mb-1 sidemenuitem">
+            <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#age-collapse" aria-expanded="false">
+              Age
+            </a>
+            <div class="collapse" id="age-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li class="radio">
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                        <input type="radio" name="age" value="elderly" onchange="">Elderly</label></br>
+                 </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="age" value="adult" onchange="">Adult</label></br>
+                  </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                        <input type="radio" name="age" value="young-adult" onchange="">Young adult</label> </br>
+                 </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                          <input type="radio" name="age" value="child" onchange="">Child</label></br>
+                 </div>
+                 <!-- <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                          <input type="radio" name="age" value="middle-aged" onchange="">Middle-aged</label></br>
+                 </div> -->
+                 <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                          <input type="radio" name="age" value="infant" onchange="">Infant</label></br>
+                 </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="mb-1 sidemenuitem">
+            <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#eth-collapse" aria-expanded="false">
+              Ethnicity
+            </a>
+            <div class="collapse" id="eth-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li class="radio">
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="ethnicity" value="white" onchange="">White</label> </br>
+                  </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="ethnicity" value="black" onchange="">Black</label></br>
+                  </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                          <input type="radio" name="ethnicity" value="latino" onchange="">Latino</label></br>
+                 </div>
+                 <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                          <input type="radio" name="ethnicity" value="asian" onchange="">Asian</label></br>
+                 </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="mb-1 sidemenuitem">
+            <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#eyes-collapse" aria-expanded="false">
+              Eyes color
+            </a>
+            <div class="collapse" id="eyes-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li class="radio">
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="eye_color" value="brown" onchange="">Brown</label> </br>
+                  </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="eye_color" value="grey" onchange="">Grey</label></br>
+                  </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                          <input type="radio" name="eye_color" value="blue" onchange="">Blue</label></br>
+                 </div>
+                 <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                          <input type="radio" name="eye_color" value="green" onchange="">Green</label></br>
+                 </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="mb-1 sidemenuitem">
+            <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#hair-collapse" aria-expanded="false">
+              Hair color
+            </a>
+            <div class="collapse" id="hair-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li class="radio">
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="hair_color" value="brown" onchange="">Brown</label> </br>
+                  </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="hair_color" value="black" onchange="">Black</label></br>
+                  </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                          <input type="radio" name="hair_color" value="blond" onchange="">Blond</label></br>
+                 </div>
+                 <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                          <input type="radio" name="hair_color" value="gray" onchange="">Gray</label></br>
+                 </div>
+                 <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                  <label class="radio-inline">
+                        <input type="radio" name="hair_color" value="red" onchange="">Red</label></br>
+               </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="mb-1 sidemenuitem">
+            <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#hairlen-collapse" aria-expanded="false">
+              Hair length
+            </a>
+            <div class="collapse" id="hairlen-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li class="radio">
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="hair_length" value="short" onchange="">Short</label> </br>
+                  </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="hair_length" value="medium" onchange="">Medium</label></br>
+                  </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                          <input type="radio" name="hair_length" value="long" onchange="">Long</label></br>
+                 </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="mb-1 sidemenuitem">
+            <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#emotion-collapse" aria-expanded="false">
+              Emotion
+            </a>
+            <div class="collapse" id="emotion-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li class="radio">
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="emotion" value="joy" onchange="">Joy</label> </br>
+                  </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="emotion" value="neutral" onchange="">Neutral</label></br>
+                  </div>
+                  <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                        <input type="radio" name="emotion" value="surprise" onchange="">Surprise</label></br>
+                </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+
+          <input id="btn_search" type="submit" class="btn btn-primary" value="Fetch Images" style="width: 140px; margin-left: 1.25rem; padding: .1875rem .5rem;"/>
+        </div>
+        <!-- <a class="btn btn-outline-success" id="btn_fetch">Fetch</a> -->
+        
+     </form>
+    </div>
+  </div>
+
+  <div style="float:right; width:80%">
+    <div class="container">
+      <div class="col-md-11">
+        <div class="row" id="temporal_gallery" style="height:610px; overflow-y: auto;">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="clear:both"></div>
+
+
+<script>
+  let photos_buffer = []
+  let csrf_token = "{{csrf_token}}"
+
+  function deleteChilds(){
+    var e = document.querySelector("#temporal_gallery");
+        
+        //e.firstElementChild can be used.
+        var child = e.lastElementChild; 
+        while (child) {
+            e.removeChild(child);
+            child = e.lastElementChild;
+        }
+  }
+  
+  function saveFile(id){
+      console.log('FrontEnd / saveFile fnc called...')
+      console.log('ID='+String(id))
+
+      target_urls = objlist[id]['urls']
+      target_meta = objlist[id]['meta']
+      tpic32  = target_urls[0]['32']
+      tpic64  = target_urls[1]['64']
+      tpic128 = target_urls[2]['128']
+      tpic256 = target_urls[3]['256']
+      tpic512 = target_urls[4]['512']
+
+      // let path = "/addface?"+"&url="+tpic128
+      // location.href = path;
+      data={
+        "csrfmiddlewaretoken":csrf_token,
+        "url":tpic128,
+        "meta":JSON.stringify(target_meta)
+      }
+      // console.log('Meta:')
+      // console.log(target_meta)
+      $.ajax({
+          type: 'POST',
+          url: "{% url 'addPhotoFace' %}",
+          data: data,
+          success: function(){
+            console.log('Pic added')
+          }
+      })
+  }
+
+  $("#search_form").submit(function (e) {
+      console.log('Button fetch clicked')
+
+      // preventing from page reload and default actions
+      e.preventDefault();
+      // serialize the data for sending the form data.
+      var serializedData = $(this).serialize();
+
+       $.ajax({
+        type: 'POST',
+        url: "{% url 'fetchFromExternalApi' %}",
+        data: serializedData,
+        success: function (response) {
+            if (response) {
+              console.log('Response')
+              console.log(response)
+              photos_group = response['photos_group']
+              console.log('photos_group')
+              console.log(photos_group)
+
+              const objIsEmpty = Object.keys(photos_group).length === 0;
+              if (objIsEmpty){
+                console.log('Response Empty, proceed to emulate')
+                objlist=[
+                  {"urls":[
+                    {"32":""},
+                    {"64":""},
+                    {"128":"data:image/jpeg;base64,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"},
+                    {"256":"a"},
+                    {"512":""}
+                    ]},
+                    {"urls":[
+                    {"32":""},
+                    {"64":""},
+                    {"128":"data:image/jpeg;base64,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"},
+                    {"256":"a"},
+                    {"512":""}
+                    ]}
+
+                ]
+              }else{
+                console.log('Response adquired, proced to extract data')
+                // objlist=photos_group['data']['faces']
+
+                faces_data = photos_group['data']
+                console.log('Data:')
+                console.log(faces_data)
+
+                try {  
+                  parsed_data = JSON.parse(faces_data)
+                  console.log('Parsed Data:')
+                  console.log(parsed_data)
+
+                  objlist = parsed_data['data']['faces']
+                  console.log('Faces:')
+                  console.log(objlist)
+                } catch (e) {  
+                  console.log('Already in json fromat');  
+                  parsed_data = faces_data;
+                  objlist = parsed_data['faces']
+                  console.log('Faces:')
+                  console.log(objlist)
+                }
+
+                
+                
+              }
+              
+              // store faces for further handleing
+              photos_buffer = objlist
+
+              console.log('Obj from JSON parsed')
+              console.log(objlist)
+
+              //first delet old buffer
+              // $("#temporal_gallery").innerHTML=""
+              deleteChilds()
+              // add new response on buffer
+              for (let i = 0; i < objlist.length; i++) {
+                console.log('Adding item group...'+String(i))
+                console.log(objlist[i])
+                // console.log('Category:'+String(objlist[i]['category']))
+                // console.log('Image:'+String(objlist[i]['image']))
+                // console.log('Description:'+String(objlist[i]['description']))
+                i_group = objlist[i]['urls']
+                console.log('i_group')
+                console.log(i_group)
+
+                pic32  = i_group[0]['32']
+                pic64  = i_group[1]['64']
+                pic128 = i_group[2]['128']
+                pic256 = i_group[3]['256']
+                pic512 = i_group[4]['512']
+                ij_url = pic128
+                console.log('URL=')
+                console.log(ij_url)
+
+                $("#temporal_gallery").prepend(
+                      `
+                      <div class="col-md-3">
+                        <div class="card">
+                            <img class="img-thumbnail" src="${ij_url||""}" alt="Card Image cap">
+                            <div class="card-body">
+                        
+
+                            </div>
+                            <a class="btn btn-outline-dark btn-sm sm-1" onclick="saveFile(${i})">Save</a>
+                          
+                        </div>
+                    </div>            
+                      `
+                    )
+               
+              }
+
+            }else{
+              console.log('Response undefined')
+            }
+            
+        },
+        error: function (response) {
+            // alert the error if any error occured
+            alert(response["responseJSON"]["error"]);
+        }
+    })
+    
+  })
+
+</script>
+
+
+
+
+{% endblock %}
+    

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+{% extends "GetPhotosApi/base.html" %}
+{% block head_block %}
+    <title>Gallery page</title> 
+{% endblock%}
+{% block body_block %}
+<div style="width: 100%;">
+    <div style="float:left; width: 20%">
+      <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">  
+        <form class="d-flex" id="local_storage_form">
+          <div class="row">
+            {% csrf_token %}
+  
+            <li class="mb-1 sidemenuitem">
+              <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#sex-collapse" aria-expanded="false">
+                Gender
+              </a>
+              <div class="collapse" id="sex-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li class="radio">
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" value="female" onchange="">Female</label> </br>
+                    </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" value="male" onchange="">Male</label></br>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+  
+            <li class="mb-1 sidemenuitem">
+              <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#age-collapse" aria-expanded="false">
+                Age
+              </a>
+              <div class="collapse" id="age-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li class="radio">
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="age" value="elderly" onchange="">Elderly</label></br>
+                   </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                        <label class="radio-inline">
+                            <input type="radio" name="age" value="adult" onchange="">Adult</label></br>
+                    </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="age" value="young-adult" onchange="">Young adult</label> </br>
+                   </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                            <input type="radio" name="age" value="child" onchange="">Child</label></br>
+                   </div>
+                   <!-- <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                            <input type="radio" name="age" value="middle-aged" onchange="">Middle-aged</label></br>
+                   </div> -->
+                   <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                            <input type="radio" name="age" value="infant" onchange="">Infant</label></br>
+                   </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+  
+            <li class="mb-1 sidemenuitem">
+              <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#eth-collapse" aria-expanded="false">
+                Ethnicity
+              </a>
+              <div class="collapse" id="eth-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li class="radio">
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                        <label class="radio-inline">
+                            <input type="radio" name="ethnicity" value="white" onchange="">White</label> </br>
+                    </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                        <label class="radio-inline">
+                            <input type="radio" name="ethnicity" value="black" onchange="">Black</label></br>
+                    </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                            <input type="radio" name="ethnicity" value="latino" onchange="">Latino</label></br>
+                   </div>
+                   <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                            <input type="radio" name="ethnicity" value="asian" onchange="">Asian</label></br>
+                   </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+  
+            <li class="mb-1 sidemenuitem">
+              <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#eyes-collapse" aria-expanded="false">
+                Eyes color
+              </a>
+              <div class="collapse" id="eyes-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li class="radio">
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                        <label class="radio-inline">
+                            <input type="radio" name="eye_color" value="brown" onchange="">Brown</label> </br>
+                    </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                        <label class="radio-inline">
+                            <input type="radio" name="eye_color" value="grey" onchange="">Grey</label></br>
+                    </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                            <input type="radio" name="eye_color" value="blue" onchange="">Blue</label></br>
+                   </div>
+                   <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                            <input type="radio" name="eye_color" value="green" onchange="">Green</label></br>
+                   </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+  
+            <li class="mb-1 sidemenuitem">
+              <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#hair-collapse" aria-expanded="false">
+                Hair color
+              </a>
+              <div class="collapse" id="hair-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li class="radio">
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                        <label class="radio-inline">
+                            <input type="radio" name="hair_color" value="brown" onchange="">Brown</label> </br>
+                    </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                        <label class="radio-inline">
+                            <input type="radio" name="hair_color" value="black" onchange="">Black</label></br>
+                    </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                            <input type="radio" name="hair_color" value="blond" onchange="">Blond</label></br>
+                   </div>
+                   <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                            <input type="radio" name="hair_color" value="gray" onchange="">Gray</label></br>
+                   </div>
+                   <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                    <label class="radio-inline">
+                          <input type="radio" name="hair_color" value="red" onchange="">Red</label></br>
+                 </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+  
+            <li class="mb-1 sidemenuitem">
+              <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#hairlen-collapse" aria-expanded="false">
+                Hair length
+              </a>
+              <div class="collapse" id="hairlen-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li class="radio">
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                        <label class="radio-inline">
+                            <input type="radio" name="hair_length" value="short" onchange="">Short</label> </br>
+                    </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                        <label class="radio-inline">
+                            <input type="radio" name="hair_length" value="medium" onchange="">Medium</label></br>
+                    </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                            <input type="radio" name="hair_length" value="long" onchange="">Long</label></br>
+                   </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+  
+            <li class="mb-1 sidemenuitem">
+              <a class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#emotion-collapse" aria-expanded="false">
+                Emotion
+              </a>
+              <div class="collapse" id="emotion-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li class="radio">
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                        <label class="radio-inline">
+                            <input type="radio" name="emotion" value="joy" onchange="">Joy</label> </br>
+                    </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                        <label class="radio-inline">
+                            <input type="radio" name="emotion" value="neutral" onchange="">Neutral</label></br>
+                    </div>
+                    <div style="margin-left: 1.25rem; padding: .1875rem .5rem;">
+                      <label class="radio-inline">
+                          <input type="radio" name="emotion" value="surprise" onchange="">Surprise</label></br>
+                  </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+  
+  
+            <input id="btn_search" type="submit" class="btn btn-primary" value="Apply filters" style="width: 140px; margin-left: 1.25rem; padding: .1875rem .5rem;"/>
+          </div>
+          <!-- <a class="btn btn-outline-success" id="btn_fetch">Fetch</a> -->
+          
+        </form>
+      </div>
+    </div>
+  
+    <div style="float:right; width:80%">
+      <div class="container">
+        <div class="col-md-9">
+          <div class="row" id="storage_gallery" style="height:610px; overflow-y: auto;">
+            {% for photo in photos %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="data:image/png;base64,{{photo.image}}">
+
+                            <div class="card-body">
+                                
+                            </div>
+                            <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm sm-1">View</a>
+                        </div>
+                    </div>
+                {% empty%}
+                <h3> Ups, no photos...</h3>
+                {% endfor%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="clear:both"></div>
+
+  <script>
+      let csrf_token = "{{csrf_token}}"
+
+      function deleteStorageGalleryChilds(){
+        var e = document.querySelector("#storage_gallery");
+            var child = e.lastElementChild; 
+            while (child) {
+                e.removeChild(child);
+                child = e.lastElementChild;
+            }
+      }
+
+      $("#local_storage_form").submit(function (e) {
+        console.log('Button filter clicked')
+        // preventing from page reload and default actions
+        e.preventDefault();
+        // serialize the data for sending the form data.
+        var serializedData = $(this).serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'fetchFromLocalStorage' %}",
+            data: serializedData,
+            success: function (response) {
+                if (response) {
+                    console.log('Response')
+                    console.log(response)
+
+                    photos_group = response['photos_group']
+                    console.log('photos_group')
+                    console.log(photos_group)
+
+                    const objIsEmpty = Object.keys(photos_group).length === 0;
+                    if (objIsEmpty==false){
+
+                        faces_data = photos_group['data']
+                        console.log('Data:')
+                        console.log(faces_data)
+
+                        parsed_data = JSON.parse(faces_data)
+                        console.log('Parsed Data:')
+                        console.log(parsed_data)
+
+                        deleteStorageGalleryChilds()
+
+                        // Attach elements to gallery on the view
+                        for (let i = 0; i < parsed_data.length; i++) {
+                            console.log('Adding item group...'+String(i))
+                            // console.log(parsed_data[i])
+                            itemImageB64 = parsed_data[i]['image']
+                            itemID = (parsed_data[i]['pk']).toString()
+                            console.log(itemID)
+                            $("#storage_gallery").prepend(
+                              `
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img src="data:image/png;base64,${itemImageB64||""}">
+                                        <div class="card-body">
+                                            
+                                        </div>
+                              
+                                        <a href='/photo/${itemID}' class="btn btn-outline-dark btn-sm sm-1">View</a>
+                                    </div>
+                                </div>
+      
+                                `
+                                )
+                        
+                        }
+                    }
+                
+                }else{
+                    console.log('Response undefined')
+                }
+                
+            },
+            error: function (response) {
+                // alert the error if any error occured
+                alert(response["responseJSON"]["error"]);
+            }
+        })
+    
+      })
+
+
+  </script>
+{% endblock %}
