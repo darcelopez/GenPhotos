@@ -46,7 +46,6 @@ class PhotoFace(models.Model):
     category_hair_length  = models.ForeignKey(CategoryHairLength, null=True, blank=True, on_delete=models.SET_NULL)
     
     image = models.ImageField(null=False, blank=False)
-    # description = models.CharField(max_length=500, null=False, blank=False)
     description = models.TextField()
 
     def __str__(self):

@@ -50,11 +50,6 @@ def getValidKeyFromDB(iDBObject):
     for itemKey in iDBObject:
         serializedKeyItem = serializers.serialize('json', [ itemKey, ])
         JSONKey = json.loads(serializedKeyItem)
-
-        # key_model = JSONKey[0]['model']
-        # key_pk = JSONKey[0]['pk']
-        # key_fields = JSONKey[0]['fields']
-        # key_description = JSONKey[0]['fields']['description']
         key_value = JSONKey[0]['fields']['key']
         if len(key_value)>0:
             return key_value
@@ -67,24 +62,11 @@ def filterList(iObjectList, iParams):
         if iParams[par]:
             par_name = str(par)
             par_val = str(iParams[par])
-            # print('Checking:'+ par_name)
-
+  
             if par in ['gender', 'age', 'ethnicity', 'eye_color', 'hair_color', 'hair_length', 'emotion']:
                 # c = 0
                 aux=[]
                 for itemObject in result:
-                    # print('')
-                    # print('Counter=', c)
-                    # print(itemObject)
-                 
-                    # print('category_emotion=', itemObject.category_emotion)
-                    # print('category_gender=', itemObject.category_gender)
-                    # print('category_age=', itemObject.category_age)
-                    # print('category_ethnicity=', itemObject.category_ethnicity)
-                    # print('category_eye_color=', itemObject.category_eye_color)
-                    # print('category_hair_color=', itemObject.category_hair_color)
-                    # print('category_hair_length=', itemObject.category_hair_length)
-
                     if par_name=='emotion' and str(itemObject.category_emotion)==par_val:
                         aux.append(itemObject)
                         print('Found a match')
@@ -152,20 +134,6 @@ def fetchFromExternalApi(request):
                 failed_api_call = True
                 print('Could not find a valid Key to call the external Api')
 
-        if CALL_EXTERNAL_API==False or failed_api_call:
-            print('Proceed to use testing data')
-            print('Loading from JSON file')
-            json_file = 'static/data/response.json'
-            # json_file = 'response.json'
-            f = open(json_file)
-            json_data = json.load(f)
-            f.close()
-            print('Data fetch from local file:')
-            response['status'] = 200
-            response['message'] = 'success'
-            response['data'] = json.dumps(json_data)
-            return JsonResponse({"photos_group": response}, status=200)
-
     else:
         # some form errors occured.
         return JsonResponse({"error": []}, status=400)
@@ -181,16 +149,11 @@ def fetchFromLocalStorage(request):
     if request.is_ajax and request.method == "POST":
         # get the form data
         PostData = request.POST
-        # print('Post data')
-        # print(PostData)
-        # get filter params
         response = {}
         photos = PhotoFace.objects.all()
 
         # filter photos by from parameters
         filtered = filterList(photos, PostData)
-
-        # serializedPhotos = serializers.serialize('json', [ photos, ])
         serializedPhotos = PhotoSerializer2(filtered, many=True)
         serializedPhotosJSON = json.dumps(serializedPhotos.data)
 
@@ -212,11 +175,6 @@ def addPhotoFace(request):
         d_URL = PostData['url']
         d_Meta = PostData['meta']
         d_Meta_JSON = json.loads(PostData['meta'])
-
-        # print('d_URL', d_URL)
-        # print('d_Meta', d_Meta)
-        # print('d_Meta_JSON',d_Meta_JSON)
-
         if ('emotion' in d_Meta_JSON) and (d_Meta_JSON['emotion'][0] != 'none'):
             category_emotion, created = CategoryEmotion.objects.get_or_create(name=d_Meta_JSON['emotion'][0])
         else:

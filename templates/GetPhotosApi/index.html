@@ -343,20 +343,11 @@
               
               // store faces for further handleing
               photos_buffer = objlist
-
-              console.log('Obj from JSON parsed')
-              console.log(objlist)
-
-              //first delet old buffer
-              // $("#temporal_gallery").innerHTML=""
               deleteChilds()
               // add new response on buffer
               for (let i = 0; i < objlist.length; i++) {
                 console.log('Adding item group...'+String(i))
                 console.log(objlist[i])
-                // console.log('Category:'+String(objlist[i]['category']))
-                // console.log('Image:'+String(objlist[i]['image']))
-                // console.log('Description:'+String(objlist[i]['description']))
                 i_group = objlist[i]['urls']
                 console.log('i_group')
                 console.log(i_group)
